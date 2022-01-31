@@ -1,7 +1,11 @@
 cmake_minimum_required(VERSION 3.21)
-project(SCompress)
+project(SimpleCompress)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(SCompress
+include_directories(.)
+
+add_executable(SimpleCompress
+        Compress.cpp
+        Compress.h
         main.cpp)

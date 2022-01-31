@@ -1,10 +1,10 @@
 /*******************************************************************************
  * program name: cis65 programming assignment 1
- * created date: 1/30/21
+ * created date: 1/30/22
  * created by: josh m dye
  * purpose:
  * acknowledgements:
- * copyright 2021 josh m dye licensed under the
+ * copyright 2022 josh m dye licensed under the
  * educational community license, version 2.0 (the "license"); you may
  * not use this file except in compliance with the license. you may
  * obtain a copy of the license at
