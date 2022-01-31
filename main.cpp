@@ -19,15 +19,16 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include "Compress.h"
+
 
 using namespace std;
-void print(vector<string> const &a);
-void print(vector<int> const &a);
 
 int main()
 {
-    vector<string> uniqueWords;    //hold unique word list
-    vector<int> wordOccurrences;    //hold numbers for compressed file
+    string uniqueWords[1000];    //hold unique word list
+    int numUniqueWords = 0, numWords = 0;
+    int wordOccurrences[1000];    //hold numbers for compressed file
     string currentWord;
     bool found;
     int index;
@@ -40,34 +41,22 @@ int main()
     }
     while (toCompress >> currentWord) { //put next word into currentWord
         found = false;
-        for (int i = 0; i < (uniqueWords.size()); i++) {
-            if (uniqueWords.at(i) == currentWord) {
+        for (int i = 0; i <= numUniqueWords; i++) {
+            if (uniqueWords[i] == currentWord) {
                 found = true; // set to true if currentWord found in list
                 index = i;               //set index to position found at
                 break;                          //if found, exit for loop
             }
         }
         if (!found) {
-            uniqueWords.push_back(currentWord);      //if not found, add to list
-            index = int(uniqueWords.size() - 1); //set index to position on list
+            uniqueWords[numUniqueWords] = currentWord;      //if not found, add to list
+            index = numUniqueWords; //set index to position on list
+            numUniqueWords++;  //next unique word will go in next spot
         }
-        wordOccurrences.push_back(index);
+        wordOccurrences[numWords] = index;
+        numWords++;
     }
-    print(wordOccurrences);
-    cout << endl;
-    print(uniqueWords);
+    Compress::write(uniqueWords, numUniqueWords, wordOccurrences, numWords);
 
     return 0;
-}
-void print(vector<string> const &input)
-{
-    for (int i = 0; i < input.size(); i++) {
-        cout << i << "-" << input.at(i) << ' ';
-    }
-}
-void print(vector<int> const &input)
-{
-    for (int i: input) {
-        cout << i << ' ';
-    }
 }
