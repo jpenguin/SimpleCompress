@@ -12,11 +12,13 @@
 using std::string;
 using std::cout;
 using std::ofstream;
+using std::ifstream;
 
 class Compress
 {
 public:
-    static void write(string[], int, int[], int);
+    static void GetData(ifstream &, string[], int *, int[], int *);
+    static void Write(string[], int, int[], int);
 };
 
 

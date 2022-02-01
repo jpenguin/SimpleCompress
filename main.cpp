@@ -21,45 +21,38 @@
 
 using std::string;
 using std::cout;
+using std::cin;
 using std::ifstream;
 //using namespace std;
 
 int main()
 {
     string uniqueWords[1000];                             //hold unique word list
-    int index;                                         //position of word in list
     int wordOccurrences[1000];                 //hold numbers for compressed file
     int numUniqueWords = 0, numWords = 0;
-    string currentWord;
-    bool found;
+    char choice;
 
     ifstream toCompress;
-    //toCompress.open("input.txt");                             //short test file
-    toCompress.open("sample.txt");                           //1, 2 & 3 repeated
-    //toCompress.open("lyrics.txt");                    //song lyrics to test with
+    do {
+        cout << "Which file?\n"
+                "\t(1) Short Test\n\t(2) One, Two, Three\n\t(3) Mr. Bojangles\n";
+        cin >> choice;
+        switch (choice) {
+            case '1':
+                toCompress.open("input.txt");                             //short test file
+                break;
+            case '2':
+                toCompress.open("sample.txt");                           //1, 2 & 3 repeated
+                break;
+            case '3':
+                toCompress.open("lyrics.txt");                    //song lyrics to test with
+                break;
+         }
+    }
+    while (!toCompress);
 
-    if (!toCompress) {
-        cout << "file could not be opened.";
-        return 1;
-    }
-    while (toCompress >> currentWord) {                //put next word into currentWord
-        found = false;
-        for (int i = 0; i <= numUniqueWords; i++) {
-            if (uniqueWords[i] == currentWord) {
-                found = true;                // set to true if currentWord found in list
-                index = i;                              //set index to position found at
-                break;                                         //if found, exit for loop
-            }
-        }
-        if (!found) {
-            uniqueWords[numUniqueWords] = currentWord;           //if not found, add to list
-            index = numUniqueWords;                      //set index to lat position on list
-            numUniqueWords++;                        //next unique word will go in next spot
-        }
-        wordOccurrences[numWords] = index;  //append position word was found or was placed at
-        numWords++;                                              //increment total word count
-    }
-    Compress::write(uniqueWords, numUniqueWords, wordOccurrences, numWords);
+    Compress::GetData(toCompress, uniqueWords, &numUniqueWords, wordOccurrences, &numWords);
+    Compress::Write(uniqueWords, numUniqueWords, wordOccurrences, numWords);
 
     return 0;
 }
