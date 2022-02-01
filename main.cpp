@@ -21,11 +21,17 @@ using std::cin;
 using std::cout;
 using std::ifstream;
 
+/*******************************************************************************
+* Function Name: main()
+* Parameters: None
+* Return Value: int
+* Purpose: Chose file and call compression functions
+*******************************************************************************/
 int main()
 {
-    Compress file;                // Create instance of the compression class
-    string uniqueWords[1000];                        // hold unique word list
-    int wordOccurrences[1000];            // hold numbers for compressed file
+    Compress file;                   // Create instance of the compression class
+    string uniqueWords[1000];                           // hold unique word list
+    int wordOccurrences[1000];               // hold numbers for compressed file
     int numUniqueWords = 0, numWords = 0;
     char choice;
 
@@ -33,28 +39,29 @@ int main()
     do {
         cout
             << "Which file?\n"
-               "\t(1) Short Test\n\t(2) One, Two, Three\n\t(3) Mr. Bojangles\n";
+               "\t(1) ECL License\n\t(2) One, Two, Three\n\t(3) Mr. Bojangles\n";
         cin >> choice;
         switch (choice) {
             case '1':
-                toCompress.open("input.txt");           // short test file
+                toCompress.open("LICENSE.txt");                    // ECL-2.0
                 break;
             case '2':
-                toCompress.open("sample.txt");        // 1, 2 & 3 repeated
+                toCompress.open("sample.txt");            // 1, 2 & 3 repeated
                 break;
             case '3':
-                toCompress.open("lyrics.txt"); // song lyrics to test with
+                toCompress.open("lyrics.txt");     // song lyrics to test with
                 break;
             default:
                 choice = 'n';
         }
-    } while (!toCompress || choice == 'n');
+    }
+    while (!toCompress || choice == 'n');
 
     // Pass variables as pointers, so original values are change.
     // Arrays are already pointers
-    file.GetData(
+    Compress::GetData(
         toCompress, uniqueWords, &numUniqueWords, wordOccurrences, &numWords);
-    file.Write(uniqueWords, numUniqueWords, wordOccurrences, numWords);
+    Compress::Write(uniqueWords, numUniqueWords, wordOccurrences, numWords);
 
     return 0;
 }
