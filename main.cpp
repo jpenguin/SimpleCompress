@@ -15,43 +15,42 @@
  * or implied. see the license for the specific language governing
  * permissions and limitations under the license.
  *******************************************************************************/
-#include <string>
-#include <iostream>
 #include "Compress.h"
 
-using std::string;
-using std::cout;
 using std::cin;
+using std::cout;
 using std::ifstream;
-//using namespace std;
 
 int main()
 {
-    string uniqueWords[1000];                             //hold unique word list
-    int wordOccurrences[1000];                 //hold numbers for compressed file
+    string uniqueWords[1000]; // hold unique word list
+    int wordOccurrences[1000]; // hold numbers for compressed file
     int numUniqueWords = 0, numWords = 0;
     char choice;
 
     ifstream toCompress;
     do {
-        cout << "Which file?\n"
-                "\t(1) Short Test\n\t(2) One, Two, Three\n\t(3) Mr. Bojangles\n";
+        cout
+            << "Which file?\n"
+               "\t(1) Short Test\n\t(2) One, Two, Three\n\t(3) Mr. Bojangles\n";
         cin >> choice;
         switch (choice) {
             case '1':
-                toCompress.open("input.txt");                             //short test file
+                toCompress.open("input.txt"); // short test file
                 break;
             case '2':
-                toCompress.open("sample.txt");                           //1, 2 & 3 repeated
+                toCompress.open("sample.txt"); // 1, 2 & 3 repeated
                 break;
             case '3':
-                toCompress.open("lyrics.txt");                    //song lyrics to test with
+                toCompress.open("lyrics.txt"); // song lyrics to test with
                 break;
-         }
-    }
-    while (!toCompress);
+            default:
+                choice = 'n';
+        }
+    } while (!toCompress || choice == 'n');
 
-    Compress::GetData(toCompress, uniqueWords, &numUniqueWords, wordOccurrences, &numWords);
+    Compress::GetData(
+        toCompress, uniqueWords, &numUniqueWords, wordOccurrences, &numWords);
     Compress::Write(uniqueWords, numUniqueWords, wordOccurrences, numWords);
 
     return 0;
