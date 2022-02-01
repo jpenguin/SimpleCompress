@@ -17,8 +17,8 @@ using std::ifstream;
 class Compress
 {
 public:
-    static void GetData(ifstream &, string[], int *, int[], int *);
-    static void Write(string[], int, int[], int);
+    void GetData(ifstream &, string[], int *, int[], int *);
+    void Write(string[], int, int[], int);
 };
 
 

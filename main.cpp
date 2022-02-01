@@ -23,8 +23,9 @@ using std::ifstream;
 
 int main()
 {
-    string uniqueWords[1000]; // hold unique word list
-    int wordOccurrences[1000]; // hold numbers for compressed file
+    Compress file;                // Create instance of the compression class
+    string uniqueWords[1000];                        // hold unique word list
+    int wordOccurrences[1000];            // hold numbers for compressed file
     int numUniqueWords = 0, numWords = 0;
     char choice;
 
@@ -36,10 +37,10 @@ int main()
         cin >> choice;
         switch (choice) {
             case '1':
-                toCompress.open("input.txt"); // short test file
+                toCompress.open("input.txt");           // short test file
                 break;
             case '2':
-                toCompress.open("sample.txt"); // 1, 2 & 3 repeated
+                toCompress.open("sample.txt");        // 1, 2 & 3 repeated
                 break;
             case '3':
                 toCompress.open("lyrics.txt"); // song lyrics to test with
@@ -49,9 +50,11 @@ int main()
         }
     } while (!toCompress || choice == 'n');
 
-    Compress::GetData(
+    // Pass variables as pointers, so original values are change.
+    // Arrays are already pointers
+    file.GetData(
         toCompress, uniqueWords, &numUniqueWords, wordOccurrences, &numWords);
-    Compress::Write(uniqueWords, numUniqueWords, wordOccurrences, numWords);
+    file.Write(uniqueWords, numUniqueWords, wordOccurrences, numWords);
 
     return 0;
 }
