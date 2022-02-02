@@ -69,6 +69,7 @@ void Compress::Write(string *uniqueWords,
             output << uniqueWords[count] << " ";
         }
         output.close();
+        cout << "Saved to output.jzip";
     }
     else cout << "Unable to create file";
 }

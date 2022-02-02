@@ -29,7 +29,6 @@ using std::ifstream;
 *******************************************************************************/
 int main()
 {
-    Compress file;                   // Create instance of the compression class
     string uniqueWords[1000];                           // hold unique word list
     int wordOccurrences[1000];               // hold numbers for compressed file
     int numUniqueWords = 0, numWords = 0;
@@ -39,7 +38,7 @@ int main()
     do {
         cout
             << "Which file?\n"
-               "\t(1) ECL License\n\t(2) One, Two, Three\n\t(3) Mr. Bojangles\n";
+               "\t(1) ECL License\n\t(2) One, Two, Three\n\t(3) Mr. Bojangles\n\t(4) Exit";
         cin >> choice;
         switch (choice) {
             case '1':
@@ -51,9 +50,14 @@ int main()
             case '3':
                 toCompress.open("lyrics.txt");     // song lyrics to test with
                 break;
+            case '4':
+                return 0;
             default:
+                cout << "Invalid Choice\a\nTry again...";
                 choice = 'n';
         }
+        if (!toCompress)
+            cout << "File not found\a\nTry again...";
     }
     while (!toCompress || choice == 'n');
 
