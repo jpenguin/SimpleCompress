@@ -9,10 +9,10 @@
 #include <fstream>
 #include <iostream>
 
-using std::string;
 using std::cout;
-using std::ofstream;
 using std::ifstream;
+using std::ofstream;
+using std::string;
 
 class Compress
 {
@@ -21,5 +21,4 @@ public:
     static void Write(string[], int, int[], int);
 };
 
-
-#endif //COMPRESS_H
+#endif // COMPRESS_H
