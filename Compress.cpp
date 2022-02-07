@@ -3,13 +3,9 @@
 //
 
 #include "Compress.h"
+#include <iostream>
 
-/*******************************************************************************
- * Function Name: Compress::GetData()
- * Parameters: Pointers to word list, number list, unique word count, word count
- * Return Value: void
- * Purpose: Fill array with list of unique words and numbered occurrences
- *******************************************************************************/
+using std::cout;
 void Compress::GetData(ifstream &toCompress, string *uniqueWords,
                        int *numUniqueWords, int *wordOccurrences, int *numWords)
 {
@@ -39,12 +35,6 @@ void Compress::GetData(ifstream &toCompress, string *uniqueWords,
     }
 }
 
-/*************************************************************************
- * Function Name: Compress::Write()
- * Parameters: Word list, number list, word count, unique word count
- * Return Value: void
- * Purpose: Write arrays to file
- *************************************************************************/
 void Compress::Write(string *uniqueWords, int numUniqueWords,
                      int *wordOccurrences, int numWords)
 {
@@ -61,6 +51,6 @@ void Compress::Write(string *uniqueWords, int numUniqueWords,
         cout << "Saved to output.jzip";
     } else {
         cout << "\a\nUnable to create file\n";
-        throw 1;  // Throw exception for main to handle
+        throw 1; // Throw exception for main to handle
     }
 }
